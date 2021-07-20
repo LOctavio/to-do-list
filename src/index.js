@@ -7,3 +7,14 @@ class task {
         this.index = index;
     }
 }
+
+const print = () => {
+    const container = document.querySelector('ul');
+    tasksList.forEach(element => {
+        const task = document.createElement('li');
+        const text = document.createElement('span');
+        text.textContent = element.description;
+        task.appendChild(text);
+        container.appendChild(task);
+    });
+}
