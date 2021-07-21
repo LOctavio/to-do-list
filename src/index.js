@@ -26,11 +26,11 @@ const printList = () => {
     container.appendChild(addTask);
     tasksList.sort((a, b) => { return a.index > b.index ? 1 : -1 } );
     tasksList.forEach(element => {
-        printTask(element);
+        printTask(element.description);
     });
 }
 
-const printTask = element => {
+const printTask = description => {
     const container = document.querySelector('ul');
     const task = document.createElement('li');
     const check = document.createElement('input');
@@ -38,14 +38,17 @@ const printTask = element => {
     const icon = new Image();
     icon.src = Icon;
     check.type = "checkbox";
-    text.textContent = element.description;
+    text.textContent = description;
     task.appendChild(check);
     task.appendChild(text);
     task.appendChild(icon);
     container.appendChild(task);
 }
 
-const addTask = (description, index) => tasksList.push(new task(description, index));
+const addTask = (description, index) => {
+    tasksList.push(new task(description, index));
+    printTask(description);
+}
 
 window.onload = () => {
     printList();
