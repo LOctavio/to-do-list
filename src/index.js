@@ -24,3 +24,5 @@ const print = () => {
         container.appendChild(task);
     });
 }
+
+const addTask = (description, index) => tasksList.push(new task(description, index));
