@@ -1,4 +1,5 @@
 import Icon from './three-dots-vertical.svg';
+import Arrow from './arrow-return-left.svg';
 
 const tasksList = [];
 
@@ -14,6 +15,9 @@ const print = () => {
     const container = document.querySelector('ul');
     const addTask = document.createElement('li');
     const addButton = document.createElement('button');
+    const arrow = new Image();
+    arrow.src = Arrow;
+    addButton.appendChild(arrow);
     const input = document.createElement('input');
     addTask.appendChild(input);
     addTask.appendChild(addButton);
