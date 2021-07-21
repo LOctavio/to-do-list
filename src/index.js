@@ -12,6 +12,12 @@ class task {
 
 const print = () => {
     const container = document.querySelector('ul');
+    const addTask = document.createElement('li');
+    const addButton = document.createElement('button');
+    const input = document.createElement('input');
+    addTask.appendChild(input);
+    addTask.appendChild(addButton);
+    container.appendChild(addTask);
     tasksList.sort((a, b) => { return a.index > b.index ? 1 : -1 } );
     tasksList.forEach(element => {
         const task = document.createElement('li');
