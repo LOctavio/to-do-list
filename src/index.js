@@ -35,3 +35,7 @@ const print = () => {
 }
 
 const addTask = (description, index) => tasksList.push(new task(description, index));
+
+window.onload = () => {
+    print();
+}
