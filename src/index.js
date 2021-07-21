@@ -37,7 +37,7 @@ const printTask = description => {
     const task = document.createElement('li');
     task.classList.add('tasks');
     const check = document.createElement('input');
-    const text = document.createElement('span');
+    const text = document.createElement('label');
     const icon = new Image();
     icon.src = Icon;
     check.type = "checkbox";
