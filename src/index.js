@@ -22,6 +22,7 @@ const printList = () => {
     addButton.appendChild(arrow);
     const input = document.createElement('input');
     input.setAttribute('id', 'add-task');
+    input.setAttribute('placeholder', 'Add to your list...')
     addTask.appendChild(input);
     addTask.appendChild(addButton);
     container.appendChild(addTask);
