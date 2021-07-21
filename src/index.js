@@ -1,5 +1,6 @@
 import Icon from './three-dots-vertical.svg';
 import Arrow from './arrow-return-left.svg';
+import './style.css';
 
 const tasksList = [];
 
