@@ -52,4 +52,8 @@ const addTask = (description, index) => {
 
 window.onload = () => {
     printList();
+    document.querySelector('#add-button').addEventListener('click', () => {
+        const task = document.querySelector('#add-task').value;
+        addTask(task, tasksList.length + 1);
+    });
 }
