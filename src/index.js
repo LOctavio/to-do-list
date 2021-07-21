@@ -35,6 +35,7 @@ const printList = () => {
 const printTask = description => {
     const container = document.querySelector('ul');
     const task = document.createElement('li');
+    task.classList.add('tasks');
     const check = document.createElement('input');
     const text = document.createElement('span');
     const icon = new Image();
