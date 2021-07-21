@@ -9,4 +9,27 @@ ul {
 li {
     border-top: 1px solid #ebebeb;
     height: 50px;
+    position: relative;
+}
+
+#add-task {
+    width: 335px;
+    height: 100%;
+    border: 0;
+    padding: 0 50px 0 15px;
+    background-color: #ebebeb;
+    font-style: italic;
+}
+
+#add-task:focus {
+    outline: none;  
+}
+
+#add-button {
+    position: absolute;
+    right: 0;
+    border: 0;
+    width: 50px;
+    height: 100%;
+    background-color: #ebebeb;
 }
