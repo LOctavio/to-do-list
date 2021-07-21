@@ -11,7 +11,7 @@ class task {
     }
 }
 
-const print = () => {
+const printList = () => {
     const container = document.querySelector('ul');
     const addTask = document.createElement('li');
     const addButton = document.createElement('button');
@@ -26,22 +26,27 @@ const print = () => {
     container.appendChild(addTask);
     tasksList.sort((a, b) => { return a.index > b.index ? 1 : -1 } );
     tasksList.forEach(element => {
-        const task = document.createElement('li');
-        const check = document.createElement('input');
-        const text = document.createElement('span');
-        const icon = new Image();
-        icon.src = Icon;
-        check.type = "checkbox";
-        text.textContent = element.description;
-        task.appendChild(check);
-        task.appendChild(text);
-        task.appendChild(icon);
-        container.appendChild(task);
+        printTask(element);
     });
+}
+
+const printTask = element => {
+    const container = document.querySelector('ul');
+    const task = document.createElement('li');
+    const check = document.createElement('input');
+    const text = document.createElement('span');
+    const icon = new Image();
+    icon.src = Icon;
+    check.type = "checkbox";
+    text.textContent = element.description;
+    task.appendChild(check);
+    task.appendChild(text);
+    task.appendChild(icon);
+    container.appendChild(task);
 }
 
 const addTask = (description, index) => tasksList.push(new task(description, index));
 
 window.onload = () => {
-    print();
+    printList();
 }
