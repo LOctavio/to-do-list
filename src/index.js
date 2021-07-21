@@ -1,3 +1,5 @@
+import Icon from './three-dots-vertical.svg';
+
 const tasksList = [];
 
 class task {
@@ -15,12 +17,13 @@ const print = () => {
         const task = document.createElement('li');
         const check = document.createElement('input');
         const text = document.createElement('span');
-        const button = document.createElement('button');
+        const icon = new Image();
+        icon.src = Icon;
         check.type = "checkbox";
         text.textContent = element.description;
         task.appendChild(check);
         task.appendChild(text);
-        task.appendChild(button);
+        task.appendChild(icon);
         container.appendChild(task);
     });
 }
