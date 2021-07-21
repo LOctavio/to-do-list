@@ -15,10 +15,12 @@ const print = () => {
     const container = document.querySelector('ul');
     const addTask = document.createElement('li');
     const addButton = document.createElement('button');
+    addButton.setAttribute('id', 'add-button');
     const arrow = new Image();
     arrow.src = Arrow;
     addButton.appendChild(arrow);
     const input = document.createElement('input');
+    input.setAttribute('id', 'add-task');
     addTask.appendChild(input);
     addTask.appendChild(addButton);
     container.appendChild(addTask);
