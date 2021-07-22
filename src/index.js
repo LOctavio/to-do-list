@@ -1,5 +1,6 @@
 import Icon from './three-dots-vertical.svg';
 import Arrow from './arrow-return-left.svg';
+import Refresh from './arrow-repeat.svg';
 import './style.css';
 
 const tasksList = [];
@@ -16,8 +17,12 @@ const printList = () => {
     const container = document.querySelector('ul');
     const title = document.createElement('li');
     const titleText = document.createElement('label');
+    const refresh = new Image();
+    refresh.setAttribute('id', 'refresh-icon');
+    refresh.src = Refresh;
     titleText.innerHTML = "Today's To Do";
     title.appendChild(titleText);
+    title.appendChild(refresh);
     titleText.setAttribute('id', 'title');
     const addTask = document.createElement('li');
     const addButton = document.createElement('button');
