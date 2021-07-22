@@ -1,1 +1,36 @@
-# to-do-list
+# To-do list
+> This is a single page aplication for adding tasks and shows a list of all of them.
+
+You can add and remove tasks from the to-do list.
+
+## Built With
+
+- HTML
+- CSS
+- ES6
+- Webpack
+
+## Live Demo
+
+[Live Demo Link](https://livedemo.com)
+
+## Authors
+
+👤 **Luis Octavio Ramirez Cruz**
+
+- GitHub: [LOctavio](https://github.com/LOctavio)
+- Twitter: [@Octavio_ram431](https://twitter.com/Octavio_ram431)
+- LinkedIn: [Luis Octavio Ramirez Cruz](https://www.linkedin.com/in/luis-octavio-ramirez-cruz/)
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!
+
+Feel free to check the [issues page](https://github.com/LOctavio/to-do-list/issues).
+
+## Show your support
+
+Give a ⭐️ if you like this project!
+
+## 📝 License
+
+This project is [MIT](./MIT.md) licensed.
