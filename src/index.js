@@ -36,6 +36,12 @@ const printList = () => {
     tasksList.forEach(element => {
         printTask(element.description);
     });
+    const clearComplete = document.createElement('li');
+    clearComplete.setAttribute('id', 'clear-complete');
+    const clearButton = document.createElement('button');
+    clearButton.textContent = 'Clear all completed';
+    clearComplete.appendChild(clearButton);
+    container.appendChild(clearComplete);
 }
 
 const printTask = description => {

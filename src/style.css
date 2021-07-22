@@ -3,12 +3,14 @@ ul {
     width: 400px;
     margin: 0 auto;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    padding: 0;
+    padding: 0 0 50px 0;
+    position: relative;
 }
 
 li {
     border-top: 1px solid #ebebeb;
     height: 50px;
+    width: inherit;
     position: relative;
 }
 
@@ -67,4 +69,16 @@ li {
     line-height: 50px;
 }
 
+#clear-complete {
+    position: absolute;
+    bottom: 0;
+}
 
+#clear-complete button {
+    height: inherit;
+    width: inherit;
+    color: rgb(123, 123, 123);
+    background-color: rgb(246, 246, 246);
+    border: 0;
+    padding: 0;
+}
