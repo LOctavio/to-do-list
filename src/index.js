@@ -14,6 +14,11 @@ class task {
 
 const printList = () => {
     const container = document.querySelector('ul');
+    const title = document.createElement('li');
+    const titleText = document.createElement('label');
+    titleText.innerHTML = "Today's To Do";
+    title.appendChild(titleText);
+    titleText.setAttribute('id', 'title');
     const addTask = document.createElement('li');
     const addButton = document.createElement('button');
     addButton.setAttribute('id', 'add-button');
@@ -25,6 +30,7 @@ const printList = () => {
     input.setAttribute('placeholder', 'Add to your list...')
     addTask.appendChild(input);
     addTask.appendChild(addButton);
+    container.appendChild(title);
     container.appendChild(addTask);
     tasksList.sort((a, b) => { return a.index > b.index ? 1 : -1 } );
     tasksList.forEach(element => {

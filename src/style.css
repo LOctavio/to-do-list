@@ -58,4 +58,13 @@ li {
     margin: 15px;
 }
 
+#title {
+    display: inline-block;
+    width: 3350px;
+    padding-right: 50px;
+    padding-left: 15px;
+    height: inherit;
+    line-height: 50px;
+}
+
 
