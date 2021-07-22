@@ -13,6 +13,8 @@ class Task {
   }
 }
 
+
+
 const printTask = (description) => {
   const container = document.querySelector('ul');
   const task = document.createElement('li');
@@ -70,6 +72,12 @@ const addTask = (description, index) => {
   printTask(description);
 };
 
+const addExamples = () => {
+  addTask('Buy eggs', 2);
+  addTask('Wash the dishes', 1);
+  addTask('Feed cats', 1);
+}
+
 window.onload = () => {
   printList();
   document.querySelector('#add-button').addEventListener('click', () => {
@@ -77,4 +85,5 @@ window.onload = () => {
     addTask(task.value, tasksList.length + 1);
     task.value = '';
   });
+  addExamples();
 };
