@@ -11,6 +11,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html',
     }),
+    new WebpackLighthousePlugin({
+      url: 'http://localhost:9001'
+    }),
   ],
   output: {
     filename: 'main.js',
