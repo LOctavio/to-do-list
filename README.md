@@ -10,9 +10,9 @@ You can add and remove tasks from the to-do list.
 - ES6
 - Webpack
 
-## Live Demo
+## Getting Started
 
-[Live Demo Link](https://livedemo.com)
+To run the project localy open the project's directory in the termial, then run 'npm start'
 
 ## Authors
 
