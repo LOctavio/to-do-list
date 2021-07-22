@@ -13,8 +13,6 @@ class Task {
   }
 }
 
-
-
 const printTask = (description) => {
   const container = document.querySelector('ul');
   const task = document.createElement('li');
@@ -76,7 +74,7 @@ const addExamples = () => {
   addTask('Buy eggs', 2);
   addTask('Wash the dishes', 1);
   addTask('Feed cats', 1);
-}
+};
 
 window.onload = () => {
   printList();
