@@ -3,6 +3,7 @@ import Arrow from './arrow-return-left.svg';
 import Refresh from './arrow-repeat.svg';
 import './style.css';
 import {drag, drop, allowDrop} from './drag-and-drop';
+import {checkStatus} from './status';
 
 const tasksList = [];
 let count = 0;
@@ -25,6 +26,7 @@ const printTask = (description, index) => {
   task.addEventListener('drop', (e) => drop(container, e));
   task.addEventListener('dragover', (e) => allowDrop(e));
   const check = document.createElement('input');
+  check.addEventListener('change', (e) => checkStatus(e, description, index));
   const text = document.createElement('label');
   const icon = new Image();
   icon.src = Icon;
@@ -78,7 +80,7 @@ const addTask = (description, index) => {
 };
 
 const addTaskToLocalStorage = (description, index) => {
-  localStorage.setItem(index, description);
+  localStorage.setItem(index,  JSON.stringify(new Task(description, index)));
 }
 
 const addExamples = () => {
@@ -90,7 +92,7 @@ const addExamples = () => {
 const getLocalStorage = () => {
   for (let i = 0; i < localStorage.length; i += 1) {
     const index = localStorage.key(i);
-    const description = localStorage.getItem(localStorage.key(i));
+    const description = JSON.parse(localStorage.getItem(localStorage.key(i))).description;
     tasksList.push(new Task(description, index));
   }
   tasksList.sort((a, b) => (a.index > b.index ? 1 : -1));
