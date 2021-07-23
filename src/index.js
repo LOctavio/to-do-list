@@ -2,8 +2,8 @@ import Icon from './three-dots-vertical.svg';
 import Arrow from './arrow-return-left.svg';
 import Refresh from './arrow-repeat.svg';
 import './style.css';
-import {drag, drop, allowDrop} from './drag-and-drop';
-import {checkStatus} from './status';
+import { drag, drop, allowDrop } from './drag-and-drop.js';
+import { checkStatus } from './status.js';
 
 const tasksList = [];
 let count = 0;
@@ -73,15 +73,15 @@ const printList = () => {
   container.appendChild(clearComplete);
 };
 
+const addTaskToLocalStorage = (description, index) => {
+  localStorage.setItem(index, JSON.stringify(new Task(description, index)));
+};
+
 const addTask = (description, index) => {
   tasksList.push(new Task(description, index));
   printTask(description, index);
   addTaskToLocalStorage(description, index);
 };
-
-const addTaskToLocalStorage = (description, index) => {
-  localStorage.setItem(index,  JSON.stringify(new Task(description, index)));
-}
 
 const addExamples = () => {
   addTask('Buy eggs', 1);
@@ -92,26 +92,27 @@ const addExamples = () => {
 const getLocalStorage = () => {
   for (let i = 0; i < localStorage.length; i += 1) {
     const index = localStorage.key(i);
-    const description = JSON.parse(localStorage.getItem(localStorage.key(i))).description;
+    const { description } = JSON.parse(localStorage.getItem(localStorage.key(i)));
     tasksList.push(new Task(description, index));
   }
   tasksList.sort((a, b) => (a.index > b.index ? 1 : -1));
   for (let i = 0; i < localStorage.length; i += 1) {
     printTask(tasksList[i].description, tasksList[i].index);
   }
-}
+};
 
 window.onload = () => {
   printList();
   document.querySelector('#add-button').addEventListener('click', () => {
     const task = document.querySelector('#add-task');
-    addTask(task.value, count++);
+    count += 1;
+    addTask(task.value, count);
     task.value = '';
   });
-  if(localStorage.length===0) {
+  if (localStorage.length === 0) {
     addExamples();
   } else {
     getLocalStorage();
   }
-  count=tasksList.length + 1;
+  count = tasksList.length + 1;
 };
