@@ -58,7 +58,6 @@ const printList = () => {
   addTask.appendChild(addButton);
   container.appendChild(title);
   container.appendChild(addTask);
-  tasksList.sort((a, b) => (a.index > b.index ? 1 : -1));
   tasksList.forEach((element) => {
     printTask(element.description);
   });
@@ -88,9 +87,13 @@ const addExamples = () => {
 
 const getLocalStorage = () => {
   for (let i = 0; i < localStorage.length; i += 1) {
-    const description = localStorage.key(i);
-    const index = localStorage.getItem(localStorage.key(i));
-    addTask( index, description);
+    const index = localStorage.key(i);
+    const description = localStorage.getItem(localStorage.key(i));
+    tasksList.push(new Task(description, index));
+  }
+  tasksList.sort((a, b) => (a.index > b.index ? 1 : -1));
+  for (let i = 0; i < localStorage.length; i += 1) {
+    printTask(tasksList[i].description);
   }
 }
 
