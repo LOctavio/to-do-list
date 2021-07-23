@@ -15,9 +15,10 @@ class Task {
   }
 }
 
-const printTask = (description) => {
+const printTask = (description, index) => {
   const container = document.querySelector('ul');
   const task = document.createElement('li');
+  task.setAttribute('id', index);
   task.setAttribute('draggable', 'true');
   task.classList.add('tasks');
   task.addEventListener('dragstart', () => drag(task));
@@ -72,12 +73,12 @@ const printList = () => {
 
 const addTask = (description, index) => {
   tasksList.push(new Task(description, index));
-  printTask(description);
+  printTask(description, index);
   addTaskToLocalStorage(description, index);
 };
 
 const addTaskToLocalStorage = (description, index) => {
-  localStorage.setItem(index, description)
+  localStorage.setItem(index, description);
 }
 
 const addExamples = () => {
