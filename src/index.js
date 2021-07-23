@@ -2,6 +2,7 @@ import Icon from './three-dots-vertical.svg';
 import Arrow from './arrow-return-left.svg';
 import Refresh from './arrow-repeat.svg';
 import './style.css';
+import {drag, drop, allowDrop} from './drag-and-drop';
 
 const tasksList = [];
 
@@ -16,7 +17,11 @@ class Task {
 const printTask = (description) => {
   const container = document.querySelector('ul');
   const task = document.createElement('li');
+  task.setAttribute('draggable', 'true');
   task.classList.add('tasks');
+  task.addEventListener('dragstart', () => drag(task));
+  task.addEventListener('drop', (e) => drop(container, e));
+  task.addEventListener('dragover', (e) => allowDrop(e));
   const check = document.createElement('input');
   const text = document.createElement('label');
   const icon = new Image();
