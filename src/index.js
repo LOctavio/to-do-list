@@ -5,6 +5,7 @@ import './style.css';
 import {drag, drop, allowDrop} from './drag-and-drop';
 
 const tasksList = [];
+let count = 0;
 
 class Task {
   constructor(description, index, completed = false) {
@@ -101,7 +102,7 @@ window.onload = () => {
   printList();
   document.querySelector('#add-button').addEventListener('click', () => {
     const task = document.querySelector('#add-task');
-    addTask(task.value, tasksList.length + 1);
+    addTask(task.value, count++);
     task.value = '';
   });
   if(localStorage.length===0) {
@@ -109,4 +110,5 @@ window.onload = () => {
   } else {
     getLocalStorage();
   }
+  count=tasksList.length + 1;
 };
