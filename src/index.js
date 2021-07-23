@@ -95,7 +95,7 @@ const getLocalStorage = () => {
   }
   tasksList.sort((a, b) => (a.index > b.index ? 1 : -1));
   for (let i = 0; i < localStorage.length; i += 1) {
-    printTask(tasksList[i].description);
+    printTask(tasksList[i].description, tasksList[i].index);
   }
 }
 
