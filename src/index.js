@@ -76,10 +76,18 @@ const addTask = (description, index) => {
 };
 
 const addExamples = () => {
-  addTask('Buy eggs', 2);
-  addTask('Wash the dishes', 1);
-  addTask('Feed cats', 1);
+  addTask('Buy eggs', 1);
+  addTask('Wash the dishes', 2);
+  addTask('Feed cats', 3);
 };
+
+const getLocalStorage = () => {
+  for (let i = 0; i < localStorage.length; i += 1) {
+    const description = localStorage.key(i);
+    const index = localStorage.getItem(localStorage.key(i));
+    addTask( index, description);
+  }
+}
 
 window.onload = () => {
   printList();
@@ -88,5 +96,9 @@ window.onload = () => {
     addTask(task.value, tasksList.length + 1);
     task.value = '';
   });
-  addExamples();
+  if(localStorage.length===0) {
+    addExamples();
+  } else {
+    getLocalStorage();
+  }
 };
