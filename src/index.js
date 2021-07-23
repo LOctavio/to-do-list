@@ -73,7 +73,12 @@ const printList = () => {
 const addTask = (description, index) => {
   tasksList.push(new Task(description, index));
   printTask(description);
+  addTaskToLocalStorage(description, index);
 };
+
+const addTaskToLocalStorage = (description, index) => {
+  localStorage.setItem(index, description)
+}
 
 const addExamples = () => {
   addTask('Buy eggs', 1);
