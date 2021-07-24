@@ -6,6 +6,7 @@ import { drag, drop, allowDrop } from './drag-and-drop.js';
 import { checkStatus } from './status.js';
 import { addTask } from './addTask.js';
 import { edit } from './editTask';
+import { deleteTask } from './deleteTasks.js';
 
 export const tasksList = [];
 let count = 0;
@@ -30,7 +31,13 @@ const printTask = (description, index) => {
   const check = document.createElement('input');
   check.addEventListener('change', (e) => checkStatus(e, description, index));
   const text = document.createElement('textarea');
-  text.addEventListener('change', (e) => edit(e, task));
+  text.addEventListener('change', (e) => {
+    if(e.target.value.length === 0) {
+      deleteTask(e.target.parentNode);
+    } else {
+      edit(e, task);
+    }
+  });
   const icon = new Image();
   icon.src = Icon;
   check.type = 'checkbox';
