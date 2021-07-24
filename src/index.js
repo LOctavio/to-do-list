@@ -2,8 +2,11 @@ import Icon from './three-dots-vertical.svg';
 import Arrow from './arrow-return-left.svg';
 import Refresh from './arrow-repeat.svg';
 import './style.css';
+import { drag, drop, allowDrop } from './drag-and-drop.js';
+import { checkStatus } from './status.js';
 
 const tasksList = [];
+let count = 0;
 
 class Task {
   constructor(description, index, completed = false) {
@@ -13,11 +16,17 @@ class Task {
   }
 }
 
-const printTask = (description) => {
+const printTask = (description, index) => {
   const container = document.querySelector('ul');
   const task = document.createElement('li');
+  task.setAttribute('id', index);
+  task.setAttribute('draggable', 'true');
   task.classList.add('tasks');
+  task.addEventListener('dragstart', () => drag(task));
+  task.addEventListener('drop', (e) => drop(container, e));
+  task.addEventListener('dragover', (e) => allowDrop(e));
   const check = document.createElement('input');
+  check.addEventListener('change', (e) => checkStatus(e, description, index));
   const text = document.createElement('label');
   const icon = new Image();
   icon.src = Icon;
@@ -53,7 +62,6 @@ const printList = () => {
   addTask.appendChild(addButton);
   container.appendChild(title);
   container.appendChild(addTask);
-  tasksList.sort((a, b) => (a.index > b.index ? 1 : -1));
   tasksList.forEach((element) => {
     printTask(element.description);
   });
@@ -65,23 +73,46 @@ const printList = () => {
   container.appendChild(clearComplete);
 };
 
+const addTaskToLocalStorage = (description, index) => {
+  localStorage.setItem(index, JSON.stringify(new Task(description, index)));
+};
+
 const addTask = (description, index) => {
   tasksList.push(new Task(description, index));
-  printTask(description);
+  printTask(description, index);
+  addTaskToLocalStorage(description, index);
 };
 
 const addExamples = () => {
-  addTask('Buy eggs', 2);
-  addTask('Wash the dishes', 1);
-  addTask('Feed cats', 1);
+  addTask('Buy eggs', 1);
+  addTask('Wash the dishes', 2);
+  addTask('Feed cats', 3);
+};
+
+const getLocalStorage = () => {
+  for (let i = 0; i < localStorage.length; i += 1) {
+    const index = localStorage.key(i);
+    const { description } = JSON.parse(localStorage.getItem(localStorage.key(i)));
+    tasksList.push(new Task(description, index));
+  }
+  tasksList.sort((a, b) => (a.index > b.index ? 1 : -1));
+  for (let i = 0; i < localStorage.length; i += 1) {
+    printTask(tasksList[i].description, tasksList[i].index);
+  }
 };
 
 window.onload = () => {
   printList();
   document.querySelector('#add-button').addEventListener('click', () => {
     const task = document.querySelector('#add-task');
-    addTask(task.value, tasksList.length + 1);
+    count += 1;
+    addTask(task.value, count);
     task.value = '';
   });
-  addExamples();
+  if (localStorage.length === 0) {
+    addExamples();
+  } else {
+    getLocalStorage();
+  }
+  count = tasksList.length + 1;
 };

@@ -12,7 +12,12 @@ You can add and remove tasks from the to-do list.
 
 ## Getting Started
 
-To run the project localy open the project's directory in the termial, then run 'npm start'
+To run the project localy do the folllowing
+
+- open the project's directory in the termial
+- run 'npm install'
+- run 'npm run build'
+- then run 'npm start'
 
 ## Authors
 
