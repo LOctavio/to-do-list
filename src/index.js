@@ -5,6 +5,7 @@ import './style.css';
 import { drag, drop, allowDrop } from './drag-and-drop.js';
 import { checkStatus } from './status.js';
 import { addTask } from './addTask.js';
+import { edit } from './editTask';
 
 export const tasksList = [];
 let count = 0;
@@ -28,7 +29,8 @@ const printTask = (description, index) => {
   task.addEventListener('dragover', (e) => allowDrop(e));
   const check = document.createElement('input');
   check.addEventListener('change', (e) => checkStatus(e, description, index));
-  const text = document.createElement('label');
+  const text = document.createElement('textarea');
+  text.addEventListener('change', (e) => edit(e, task));
   const icon = new Image();
   icon.src = Icon;
   check.type = 'checkbox';
@@ -77,8 +79,11 @@ const printList = () => {
 
 const addExamples = () => {
   addTask('Buy eggs', 1);
+  printTask('Buy eggs', 1);
   addTask('Wash the dishes', 2);
+  printTask('Wash the dishes', 2);
   addTask('Feed cats', 3);
+  printTask('Feed cats', 3);
 };
 
 const getLocalStorage = () => {
