@@ -2,6 +2,7 @@
 import { tasksList, printList } from './index.js';
 
 export function deleteTask(item) {
+  console.log(item);
   localStorage.clear();
   const tasksList2 = [];
   for (let i = 0; i < tasksList.length; i += 1) {
@@ -20,10 +21,16 @@ export function deleteTask(item) {
 }
 
 export function clearCompleted() {
+  let count = 0;
+  const completedItems = [];
   for (let i = 0; i < localStorage.length; i += 1) {
-    const { completed } = JSON.parse(localStorage.getItem(localStorage.key(i)));
-    if (completed === true) {
-      deleteTask(document.getElementById(i + 1));
+    if (tasksList[i].completed === true) {
+      completedItems.push(i + 1);
     }
   }
+  completedItems.forEach(element => {
+    console.log(count);
+    deleteTask(document.getElementById(element-count));
+    count += 1;
+  });
 }
