@@ -4,11 +4,12 @@ import Refresh from './arrow-repeat.svg';
 import './style.css';
 import { drag, drop, allowDrop } from './drag-and-drop.js';
 import { checkStatus } from './status.js';
+import { addTask } from './addTask.js';
 
-const tasksList = [];
+export const tasksList = [];
 let count = 0;
 
-class Task {
+export class Task {
   constructor(description, index, completed = false) {
     this.description = description;
     this.completed = completed;
@@ -73,15 +74,6 @@ const printList = () => {
   container.appendChild(clearComplete);
 };
 
-const addTaskToLocalStorage = (description, index) => {
-  localStorage.setItem(index, JSON.stringify(new Task(description, index)));
-};
-
-const addTask = (description, index) => {
-  tasksList.push(new Task(description, index));
-  printTask(description, index);
-  addTaskToLocalStorage(description, index);
-};
 
 const addExamples = () => {
   addTask('Buy eggs', 1);
@@ -107,6 +99,7 @@ window.onload = () => {
     const task = document.querySelector('#add-task');
     count += 1;
     addTask(task.value, count);
+    printTask(task.value, count);
     task.value = '';
   });
   if (localStorage.length === 0) {
