@@ -6,9 +6,9 @@ import { drag, drop, allowDrop } from './drag-and-drop.js';
 import { checkStatus } from './status.js';
 import { addTask } from './addTask.js';
 import { edit } from './editTask';
-import { deleteTask } from './deleteTasks.js';
+import { deleteTask, clearCompleted } from './deleteTasks.js';
 
-export const tasksList = [];
+export var tasksList = [];
 let count = 0;
 
 export class Task {
@@ -48,7 +48,7 @@ const printTask = (description, index) => {
   container.appendChild(task);
 };
 
-const printList = () => {
+export const printList = () => {
   const container = document.querySelector('ul');
   const title = document.createElement('li');
   const titleText = document.createElement('label');
@@ -59,28 +59,35 @@ const printList = () => {
   title.appendChild(titleText);
   title.appendChild(refresh);
   titleText.setAttribute('id', 'title');
-  const addTask = document.createElement('li');
+  const newTask = document.createElement('li');
   const addButton = document.createElement('button');
   addButton.setAttribute('id', 'add-button');
+  addButton.addEventListener('click', () => {
+    const task = document.querySelector('#add-task');
+    count += 1;
+    addTask(task.value, count);
+    printTask(task.value, count);
+    task.value = '';
+  });
   const arrow = new Image();
   arrow.src = Arrow;
   addButton.appendChild(arrow);
   const input = document.createElement('input');
   input.setAttribute('id', 'add-task');
   input.setAttribute('placeholder', 'Add to your list...');
-  addTask.appendChild(input);
-  addTask.appendChild(addButton);
+  newTask.appendChild(input);
+  newTask.appendChild(addButton);
   container.appendChild(title);
-  container.appendChild(addTask);
+  container.appendChild(newTask);
   tasksList.forEach((element) => {
-    printTask(element.description);
+    printTask(element.description, element.index);
   });
   const clearComplete = document.createElement('li');
   clearComplete.setAttribute('id', 'clear-complete');
   const clearButton = document.createElement('button');
   clearButton.textContent = 'Clear all completed';
   clearButton.addEventListener('click', () => {
-    console.log('hi');
+    clearCompleted();
   });
   clearComplete.appendChild(clearButton);
   container.appendChild(clearComplete);
@@ -110,13 +117,6 @@ const getLocalStorage = () => {
 
 window.onload = () => {
   printList();
-  document.querySelector('#add-button').addEventListener('click', () => {
-    const task = document.querySelector('#add-task');
-    count += 1;
-    addTask(task.value, count);
-    printTask(task.value, count);
-    task.value = '';
-  });
   if (localStorage.length === 0) {
     addExamples();
   } else {
