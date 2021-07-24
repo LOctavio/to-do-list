@@ -1,3 +1,6 @@
+/* eslint-disable import/no-mutable-exports */
+/* eslint-disable prefer-const */
+/* eslint import/no-cycle: [1, { maxDepth: Infinity }] */
 import Icon from './three-dots-vertical.svg';
 import Arrow from './arrow-return-left.svg';
 import Refresh from './arrow-repeat.svg';
@@ -5,10 +8,10 @@ import './style.css';
 import { drag, drop, allowDrop } from './drag-and-drop.js';
 import { checkStatus } from './status.js';
 import { addTask } from './addTask.js';
-import { edit } from './editTask';
+import { edit } from './editTask.js';
 import { deleteTask, clearCompleted } from './deleteTasks.js';
 
-export var tasksList = [];
+export let tasksList = [];
 let count = 0;
 
 export class Task {
@@ -32,7 +35,7 @@ const printTask = (description, index) => {
   check.addEventListener('change', (e) => checkStatus(e, description, index));
   const text = document.createElement('textarea');
   text.addEventListener('change', (e) => {
-    if(e.target.value.length === 0) {
+    if (e.target.value.length === 0) {
       deleteTask(e.target.parentNode);
     } else {
       edit(e, task);
@@ -49,6 +52,7 @@ const printTask = (description, index) => {
 };
 
 export const printList = () => {
+  count = tasksList.length;
   const container = document.querySelector('ul');
   const title = document.createElement('li');
   const titleText = document.createElement('label');
@@ -92,7 +96,6 @@ export const printList = () => {
   clearComplete.appendChild(clearButton);
   container.appendChild(clearComplete);
 };
-
 
 const addExamples = () => {
   addTask('Buy eggs', 1);
