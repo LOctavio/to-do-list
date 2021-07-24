@@ -28,9 +28,9 @@ export function clearCompleted() {
       completedItems.push(i + 1);
     }
   }
-  completedItems.forEach(element => {
+  completedItems.forEach((element) => {
     console.log(count);
-    deleteTask(document.getElementById(element-count));
+    deleteTask(document.getElementById(element - count));
     count += 1;
   });
 }
