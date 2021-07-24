@@ -79,6 +79,9 @@ const printList = () => {
   clearComplete.setAttribute('id', 'clear-complete');
   const clearButton = document.createElement('button');
   clearButton.textContent = 'Clear all completed';
+  clearButton.addEventListener('click', () => {
+    console.log('hi');
+  });
   clearComplete.appendChild(clearButton);
   container.appendChild(clearComplete);
 };
@@ -119,5 +122,5 @@ window.onload = () => {
   } else {
     getLocalStorage();
   }
-  count = tasksList.length + 1;
+  count = tasksList.length;
 };
